@@ -75,7 +75,6 @@ const initialState = anecdotesAtStart.map(asObject)
       }
       return state.map(anecdote => 
         anecdote.id !== id ? anecdote : changedAnecdote)
-
       },
     }
   })

@@ -14,11 +14,19 @@ const notificationSlice = createSlice({
   initialState,
   reducers: {
     displayMessage(state, action) {
-      const message = action.payload
-      state = message
+        const message = action.payload
+        if(message){
+          state = message
+        }
+        return state
+        
+    },
+    removeMessage(state, action) {
+      state = null
+      return null
     }
   }
 })
 
-export const { displayMessage } = notificationSlice.actions
+export const { displayMessage, removeMessage } = notificationSlice.actions
 export default notificationSlice.reducer
