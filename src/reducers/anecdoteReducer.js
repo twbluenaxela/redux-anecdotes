@@ -64,7 +64,12 @@ const initialState = anecdotesAtStart.map(asObject)
     initialState,
     reducers: {
       createAnecdote(state, action) {
-        state.push(action.data)
+        const newAnecdote = {
+          content: action.payload,
+          id: getId(),
+          votes: 0
+        }
+        state.push(newAnecdote)
       },
       addVote(state, action) {
         const id = action.payload
