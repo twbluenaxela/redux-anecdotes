@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = 'I am alive'
+const initialState = null
 
 // export const displayMessage = (message) => {
 //   return {
