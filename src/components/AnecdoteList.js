@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addVote } from "../reducers/anecdoteReducer";
+import { displayMessage } from "../reducers/notificationReducer";
 
 const Anecdote = ({ anecdote, handleClick }) => {
   return (
@@ -21,10 +22,10 @@ const AnecdoteList = () => {
     });
   });
 
-  const vote = (id) => {
-    console.log("vote", id);
-    dispatch(addVote(id));
-  };
+  // const vote = (id) => {
+  //   console.log("vote", id);
+  //   dispatch(addVote(id));
+  // };
 
   return (
     <div>
@@ -32,7 +33,7 @@ const AnecdoteList = () => {
         <Anecdote 
         key={anecdote.id}
         anecdote={anecdote}
-        handleClick={() => dispatch(vote(anecdote.id))}
+        handleClick={() => dispatch(addVote(anecdote.id))}
         />
       ))}
     </div>
