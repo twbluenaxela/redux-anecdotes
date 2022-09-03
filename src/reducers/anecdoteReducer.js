@@ -24,12 +24,7 @@ const asObject = (anecdote) => {
     initialState: [],
     reducers: {
       createAnecdote(state, action) {
-        const newAnecdote = {
-          content: action.payload,
-          id: getId(),
-          votes: 0
-        }
-        state.push(newAnecdote)
+        state.push(action.payload)
       },
       addVote(state, action) {
         const id = action.payload
