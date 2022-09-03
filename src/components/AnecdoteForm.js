@@ -10,8 +10,8 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.quote.value
     event.target.quote.value = ''
-    const newAnecdote = await anecdoteService.createNew(content)
-    dispatch(createAnecdote(newAnecdote))
+    // const newAnecdote = await anecdoteService.createNew(content)
+    dispatch(createAnecdote(content))
   }
 
 

@@ -24,9 +24,6 @@ const asObject = (anecdote) => {
     name: 'anecdote',
     initialState: [],
     reducers: {
-      createAnecdote(state, action) {
-        state.push(action.payload)
-      },
       addVote(state, action) {
         const id = action.payload
         const anecdoteToChange = state.find(a => a.id === id)
@@ -39,18 +36,28 @@ const asObject = (anecdote) => {
       },
       setAnecdotes(state, action) {
         return action.payload
+      },
+      appendAnecdote(state, action) {
+        state.push(action.payload)
       }
     }
   })
 
 
 
-export const { createAnecdote, addVote, setAnecdotes } = anecdoteSlice.actions
+export const { addVote, setAnecdotes, appendAnecdote } = anecdoteSlice.actions
 
 export const initializeAnecdotes = () => {
   return async dispatch => {
     const anecdotes = await anecdoteService.getAll()
     dispatch(setAnecdotes(anecdotes))
+  }
+}
+
+export const createAnecdote = (content) => {
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(content)
+    dispatch(appendAnecdote(newAnecdote))
   }
 }
 
