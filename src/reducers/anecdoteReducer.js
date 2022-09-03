@@ -24,15 +24,11 @@ const asObject = (anecdote) => {
     name: 'anecdote',
     initialState: [],
     reducers: {
-      addVote(state, action) {
-        const id = action.payload
-        const anecdoteToChange = state.find(a => a.id === id)
-      const changedAnecdote = {
-        ...anecdoteToChange,
-        votes: anecdoteToChange.votes + 1
-      }
+      updateVote(state, action) {
+        const changedAnecdote = action.payload
+      console.log('REDUX SIDE - Changed anecdote:  ', changedAnecdote)
       return state.map(anecdote => 
-        anecdote.id !== id ? anecdote : changedAnecdote)
+        anecdote.id !== changedAnecdote.id ? anecdote : changedAnecdote)
       },
       setAnecdotes(state, action) {
         return action.payload
@@ -45,7 +41,7 @@ const asObject = (anecdote) => {
 
 
 
-export const { addVote, setAnecdotes, appendAnecdote } = anecdoteSlice.actions
+export const { setAnecdotes, appendAnecdote, updateVote } = anecdoteSlice.actions
 
 export const initializeAnecdotes = () => {
   return async dispatch => {
@@ -61,4 +57,10 @@ export const createAnecdote = (content) => {
   }
 }
 
+export const addVote = (id) => {
+  return async dispatch => {
+    const updatedAnecdote = await anecdoteService.vote(id)
+    dispatch(updateVote(updatedAnecdote))
+  }
+}
 export default anecdoteSlice.reducer
