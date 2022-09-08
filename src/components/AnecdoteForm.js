@@ -5,7 +5,7 @@ import anecdoteService from '../services/anecdotes'
 
 const AnecdoteForm = (props) => {
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const addAnecdote = async (event) => {
     event.preventDefault()
     const content = event.target.quote.value
@@ -26,8 +26,6 @@ const AnecdoteForm = (props) => {
   </form>
   )
 }
-
-// const mapDispatchToProps = 
 
 
 export default connect(
